@@ -1,0 +1,17 @@
+FROM centos 
+RUN yum -y install createrepo
+RUN yum -y install wget
+RUN mkdir -p /home/httpd-repo
+RUN wget http://repo.okay.com.mx/centos/7/x86_64/release/httpd-2.4.35-2.el7.x86_64.rpm -P /home/httpd-repo
+RUN echo [customrepo] >> /etc/yum.repos.d/custom.repo
+RUN echo name=Custom Repository >> /etc/yum.repos.d/custom.repo
+RUN echo baseurl=file:///home/httpd-repo >> /etc/yum.repos.d/custom.repo
+RUN echo enabled=1 >> /etc/yum.repos.d/custom.repo
+RUN echo gpgcheck=0 >> /etc/yum.repos.d/custom.repo
+RUN createrepo -p /home/httpd-repo
+RUN yum repolist 
+RUN ls /home/httpd-repo
+RUN yum --disablerepo=* --enablerepo="customrepo" install httpd
+CMD ["/usr/sbin/httpd","-D'"FOREGROUND"]
+EXPOSE 8899
+
