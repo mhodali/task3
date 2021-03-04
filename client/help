@@ -1,0 +1,4 @@
+install --downloadonly --downloaddir=/root/mypackages/ httpd
+RUN yum --disablerepo=* --enablerepo="customrepo" install -y  httpd
+RUN wget -r -np -nH   10.0.2.15:8899/repo/ -P /home/httpd-repo
+
