@@ -1,9 +1,13 @@
 #!/bin/bash 
-FILE=/home/task3/server/httpd-repo/httpd*
-if test -f "$FILE"; then
-    echo "$FILE exists."
-else 
-    echo "$FILE exists."
 
+docker exec -dit client bash 
+if [ "$(yum list installed | grep httpd)" ]; then
+   echo "httpd exist"
+else 
+   echo "httpd not exist"
 fi
+
+exit 
+
+
 

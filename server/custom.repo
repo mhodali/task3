@@ -1,6 +1,6 @@
 [customrepo] 
 name=Custom Repository 
-baseurl=file:///home/httpd-repo 
+baseurl=file:///home/server/httpd-repo 
 enabled=1 
 gpgcheck=0 
  
