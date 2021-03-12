@@ -14,7 +14,7 @@ checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRe
       stage("build"){
         steps{
         script {
-          dockerImage =docker.build
+          dockerImage = docker.build registry
         }}}
 
 
